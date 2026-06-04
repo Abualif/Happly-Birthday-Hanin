@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Happy Birthday Hanin 🎂</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,103 +17,187 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
     font-family:'Poppins',sans-serif;
-    background:#faf7f4;
     overflow-x:hidden;
-    color:#333;
+    background:#fff6f7;
 }
 
-/* HERO */
+/* BACKGROUND */
 
 .hero{
-    height:100vh;
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px),
+    #fdeff1;
+
+    background-size:30px 30px;
+
     position:relative;
-    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px;
 }
 
-.hero-image{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+/* BANNER */
 
-.overlay{
+.banner-left{
     position:absolute;
-    inset:0;
-    background:linear-gradient(
-        rgba(0,0,0,.35),
-        rgba(0,0,0,.65)
+    top:20px;
+    left:0;
+    width:180px;
+    height:70px;
+    background:
+    repeating-linear-gradient(
+      90deg,
+      #ff7f9d 0 20px,
+      #ffb3c2 20px 40px
+    );
+
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      95% 100%,
+      90% 0,
+      85% 100%,
+      80% 0,
+      75% 100%,
+      70% 0,
+      65% 100%,
+      60% 0,
+      55% 100%,
+      50% 0,
+      45% 100%,
+      40% 0,
+      35% 100%,
+      30% 0,
+      25% 100%,
+      20% 0,
+      15% 100%,
+      10% 0,
+      5% 100%,
+      0 0
     );
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
+.banner-right{
+    position:absolute;
+    top:20px;
+    right:0;
+    width:180px;
+    height:70px;
+    background:
+    repeating-linear-gradient(
+      90deg,
+      #ff7f9d 0 20px,
+      #ffb3c2 20px 40px
+    );
 
-    height:100%;
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      95% 100%,
+      90% 0,
+      85% 100%,
+      80% 0,
+      75% 100%,
+      70% 0,
+      65% 100%,
+      60% 0,
+      55% 100%,
+      50% 0,
+      45% 100%,
+      40% 0,
+      35% 100%,
+      30% 0,
+      25% 100%,
+      20% 0,
+      15% 100%,
+      10% 0,
+      5% 100%,
+      0 0
+    );
+}
+
+/* CONTENT */
+
+.container{
+    width:100%;
+    max-width:1100px;
 
     display:flex;
-    flex-direction:column;
-    justify-content:center;
     align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
 
-    text-align:center;
+/* TEXT */
+
+.left{
+    flex:1;
+}
+
+.title-top{
+    font-size:4rem;
+    font-weight:800;
     color:white;
-    padding:25px;
+
+    text-shadow:
+    3px 3px 0 #333,
+    -3px 3px 0 #333,
+    3px -3px 0 #333,
+    -3px -3px 0 #333;
+
+    opacity:0;
+    transform:translateX(-100px);
+    animation:slideIn 1s forwards;
 }
 
-.badge{
-    background:rgba(255,255,255,.2);
-    backdrop-filter:blur(10px);
+.title-bottom{
+    font-size:4rem;
+    font-weight:800;
+    color:#ff7f9d;
 
-    padding:10px 18px;
+    text-shadow:
+    3px 3px 0 #333;
 
-    border-radius:999px;
+    opacity:0;
+    transform:translateX(-100px);
 
-    font-size:.9rem;
-
-    margin-bottom:20px;
-}
-
-.hero h1{
-    font-size:2rem;
-    font-weight:300;
-}
-
-.name{
-    font-family:'Dancing Script',cursive;
-    font-size:4.5rem;
-    margin-top:10px;
+    animation:slideIn 1s .4s forwards;
 }
 
 .date{
-    margin-top:10px;
-    font-size:1.1rem;
-}
+    margin-top:15px;
 
-.subtitle{
-    margin-top:20px;
-    max-width:320px;
-    line-height:1.8;
-}
+    display:inline-block;
 
-.start-btn{
-
-    margin-top:35px;
-
-    border:none;
-
-    background:#f3b2c2;
+    background:#ff7f9d;
 
     color:white;
 
-    padding:16px 30px;
+    padding:10px 30px;
+
+    border-radius:999px;
+
+    font-weight:600;
+}
+
+.btn{
+    margin-top:30px;
+
+    border:none;
+
+    background:#333;
+
+    color:white;
+
+    padding:15px 28px;
 
     border-radius:999px;
 
@@ -123,20 +205,67 @@ body{
 
     cursor:pointer;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    transition:.3s;
 }
 
-/* SECTION */
+.btn:hover{
+    transform:translateY(-3px);
+}
 
-.section{
-    padding:70px 20px;
+/* PHOTO */
+
+.right{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.circle{
+
+    width:320px;
+    height:320px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:8px solid #444;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+    animation:float 4s infinite ease-in-out;
+}
+
+.circle img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* POPUP */
+
+.popup{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.6);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.popup.active{
+    display:flex;
 }
 
 .card{
 
-    max-width:700px;
-
-    margin:auto;
+    width:90%;
+    max-width:420px;
 
     background:white;
 
@@ -144,11 +273,18 @@ body{
 
     padding:30px;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    text-align:center;
+
+    animation:popup .4s ease;
+}
+
+.gift{
+    font-size:4rem;
 }
 
 .card h2{
-    margin-bottom:20px;
+    margin:15px 0;
+    color:#ff7f9d;
 }
 
 .card p{
@@ -156,92 +292,64 @@ body{
     color:#555;
 }
 
-/* TIMELINE */
+.close-btn{
+    margin-top:20px;
 
-.timeline{
-    margin-top:15px;
-}
+    border:none;
 
-.timeline-item{
-
-    display:flex;
-
-    gap:15px;
-
-    padding:20px 0;
-
-    border-bottom:1px solid #eee;
-}
-
-.icon{
-    font-size:1.7rem;
-}
-
-.time{
-    font-weight:600;
-}
-
-.desc{
-    color:#777;
-    font-size:.95rem;
-}
-
-/* QUOTE */
-
-.quote{
-    text-align:center;
-    font-style:italic;
-    color:#666;
-    line-height:2;
-}
-
-/* FOOTER */
-
-.footer{
-    text-align:center;
-    padding:80px 25px;
-}
-
-.footer h2{
-    font-family:'Dancing Script',cursive;
-    font-size:3rem;
-    color:#e78ea2;
-}
-
-.footer p{
-    margin-top:15px;
-    line-height:1.9;
-    color:#666;
-}
-
-.back-btn{
-
-    display:inline-block;
-
-    margin-top:30px;
-
-    text-decoration:none;
-
-    background:#f3b2c2;
+    background:#ff7f9d;
 
     color:white;
 
-    padding:15px 25px;
+    padding:12px 25px;
 
     border-radius:999px;
+
+    cursor:pointer;
 }
 
-/* ANIMATION */
-
-.fade{
-    opacity:0;
-    transform:translateY(30px);
-    transition:.8s ease;
+@keyframes slideIn{
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
 }
 
-.fade.show{
-    opacity:1;
-    transform:translateY(0);
+@keyframes float{
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.7);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@media(max-width:768px){
+
+.container{
+    flex-direction:column-reverse;
+    text-align:center;
+}
+
+.title-top,
+.title-bottom{
+    font-size:3rem;
+}
+
+.circle{
+    width:260px;
+    height:260px;
+}
+
 }
 
 </style>
@@ -249,210 +357,108 @@ body{
 
 <body>
 
-<audio id="birthdayMusic">
-    <source src="ulangtahun.mp3" type="audio/mpeg">
-</audio>
+<div class="hero">
 
-<section class="hero" id="top">
+    <div class="banner-left"></div>
+    <div class="banner-right"></div>
 
-    <img src="Hanin.jfif" class="hero-image">
+    <div class="container">
 
-    <div class="overlay"></div>
+        <div class="left">
 
-    <div class="hero-content">
+            <div class="title-top">
+                Happy
+            </div>
 
-        <div class="badge">
-            🎂 12 June Special Day
+            <div class="title-bottom">
+                Birthday
+            </div>
+
+            <div class="date">
+                12 June 🎂
+            </div>
+
+            <br>
+
+            <button class="btn" onclick="openGift()">
+                Click Here To See What's Next 🎁
+            </button>
+
         </div>
 
-        <h1>Happy Birthday</h1>
+        <div class="right">
 
-        <div class="name">
-            Hanin
+            <div class="circle">
+                <img src="Hanin.jfif">
+            </div>
+
         </div>
 
-        <div class="date">
-            12 June ✨
+    </div>
+
+</div>
+
+<div class="popup" id="giftPopup">
+
+    <div class="card">
+
+        <div class="gift">
+            🎁
         </div>
 
-        <div class="subtitle">
-            Hari ini bukan tentang bertambah usia,
-            tapi tentang merayakan semua hal baik yang telah dan akan datang.
-        </div>
+        <h2>
+            Happy Birthday Hanin
+        </h2>
 
-        <button class="start-btn" onclick="startJourney()">
-            💌 Klik Untuk Memulai
+        <p>
+
+            Sehat selalu, panjang umur,
+            rezekinya lancar,
+            dan cepat mendapat kerja yaaa.
+
+            <br><br>
+
+            Semoga di umur yang ke-23 ini
+            semakin dewasa,
+            semakin pintar,
+            makin cantik,
+            dan semua yang dipengen dikabulin.
+
+            <br><br>
+
+            Pokoknya...
+
+            <br>
+
+            <b>All The Best For You ❤️</b>
+
+        </p>
+
+        <button
+        class="close-btn"
+        onclick="closeGift()">
+
+            Awww Thank You ❤️
+
         </button>
 
     </div>
 
-</section>
-
-<section class="section fade" id="message">
-
-    <div class="card">
-
-        <h2>💌 Dear Hanin</h2>
-
-        <p>
-            Selamat ulang tahun 🎂
-            <br><br>
-
-            Semoga hari ini dipenuhi kebahagiaan,
-            tawa yang tulus,
-            dan banyak momen yang membuatmu tersenyum.
-
-            <br><br>
-
-            Terima kasih sudah menjadi bagian dari banyak cerita,
-            kenangan,
-            dan hari-hari yang menyenangkan.
-
-            <br><br>
-
-            Semoga tahun ini membawa lebih banyak keberuntungan,
-            kesehatan,
-            kebahagiaan,
-            dan impian yang terwujud.
-        </p>
-
-    </div>
-
-</section>
-
-<section class="section fade">
-
-    <div class="card">
-
-        <h2>✨ Rundown Hari Ini</h2>
-
-        <div class="timeline">
-
-            <div class="timeline-item">
-                <div class="icon">🚗</div>
-                <div>
-                    <div class="time">09:00</div>
-                    <div class="desc">Perjalanan menuju Blok M</div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="icon">🍽️</div>
-                <div>
-                    <div class="time">11:00</div>
-                    <div class="desc">Makan Siang Bersama</div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="icon">📸</div>
-                <div>
-                    <div class="time">13:00</div>
-                    <div class="desc">Foto dan Mengabadikan Momen</div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="icon">☕</div>
-                <div>
-                    <div class="time">15:00</div>
-                    <div class="desc">Coffee & Chill Time</div>
-                </div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="icon">🌇</div>
-                <div>
-                    <div class="time">17:00</div>
-                    <div class="desc">Menikmati Sunset Bersama</div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section class="section fade">
-
-    <div class="card quote">
-
-        ❤️
-
-        <br><br>
-
-        "Semoga hari ini menjadi salah satu hari yang paling berkesan,
-        dan semoga kebahagiaan selalu menemukan jalannya untukmu."
-
-    </div>
-
-</section>
-
-<section class="footer">
-
-    <h2>Happy Birthday ❤️</h2>
-
-    <p>
-
-        Thank you for all the stories,
-        memories,
-        and laughter.
-
-        <br><br>
-
-        Semoga hari ini menyenangkan,
-        dan tahun ini menjadi tahun terbaikmu.
-
-        <br><br>
-
-        🎂 Hanin • 12 June ✨
-
-    </p>
-
-    <a href="#top" class="back-btn">
-        ⬆️ Kembali Ke Atas
-    </a>
-
-</section>
+</div>
 
 <script>
 
-function startJourney(){
-
-    const music =
-    document.getElementById('birthdayMusic');
-
-    music.play();
-
-    confetti({
-        particleCount:250,
-        spread:130,
-        origin:{y:0.6}
-    });
-
+function openGift(){
     document
-    .getElementById('message')
-    .scrollIntoView({
-        behavior:'smooth'
-    });
+    .getElementById("giftPopup")
+    .classList.add("active");
 }
 
-const observer =
-new IntersectionObserver(entries=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-            entry.target.classList.add('show');
-        }
-
-    });
-
-});
-
-document.querySelectorAll('.fade')
-.forEach(el=>observer.observe(el));
+function closeGift(){
+    document
+    .getElementById("giftPopup")
+    .classList.remove("active");
+}
 
 </script>
 
