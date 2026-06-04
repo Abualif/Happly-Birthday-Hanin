@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Hanin 🎂</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#faf7f4;
+    overflow-x:hidden;
+    color:#333;
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-image{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        rgba(0,0,0,.35),
+        rgba(0,0,0,.65)
+    );
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    color:white;
+    padding:25px;
+}
+
+.badge{
+    background:rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    font-size:.9rem;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:2rem;
+    font-weight:300;
+}
+
+.name{
+    font-family:'Dancing Script',cursive;
+    font-size:4.5rem;
+    margin-top:10px;
+}
+
+.date{
+    margin-top:10px;
+    font-size:1.1rem;
+}
+
+.subtitle{
+    margin-top:20px;
+    max-width:320px;
+    line-height:1.8;
+}
+
+.start-btn{
+
+    margin-top:35px;
+
+    border:none;
+
+    background:#f3b2c2;
+
+    color:white;
+
+    padding:16px 30px;
+
+    border-radius:999px;
+
+    font-size:1rem;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+/* SECTION */
+
+.section{
+    padding:70px 20px;
+}
+
+.card{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin-bottom:20px;
+}
+
+.card p{
+    line-height:1.9;
+    color:#555;
+}
+
+/* TIMELINE */
+
+.timeline{
+    margin-top:15px;
+}
+
+.timeline-item{
+
+    display:flex;
+
+    gap:15px;
+
+    padding:20px 0;
+
+    border-bottom:1px solid #eee;
+}
+
+.icon{
+    font-size:1.7rem;
+}
+
+.time{
+    font-weight:600;
+}
+
+.desc{
+    color:#777;
+    font-size:.95rem;
+}
+
+/* QUOTE */
+
+.quote{
+    text-align:center;
+    font-style:italic;
+    color:#666;
+    line-height:2;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:80px 25px;
+}
+
+.footer h2{
+    font-family:'Dancing Script',cursive;
+    font-size:3rem;
+    color:#e78ea2;
+}
+
+.footer p{
+    margin-top:15px;
+    line-height:1.9;
+    color:#666;
+}
+
+.back-btn{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    text-decoration:none;
+
+    background:#f3b2c2;
+
+    color:white;
+
+    padding:15px 25px;
+
+    border-radius:999px;
+}
+
+/* ANIMATION */
+
+.fade{
+    opacity:0;
+    transform:translateY(30px);
+    transition:.8s ease;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="birthdayMusic">
+    <source src="ulangtahun.mp3" type="audio/mpeg">
+</audio>
+
+<section class="hero" id="top">
+
+    <img src="Hanin.jfif" class="hero-image">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🎂 12 June Special Day
+        </div>
+
+        <h1>Happy Birthday</h1>
+
+        <div class="name">
+            Hanin
+        </div>
+
+        <div class="date">
+            12 June ✨
+        </div>
+
+        <div class="subtitle">
+            Hari ini bukan tentang bertambah usia,
+            tapi tentang merayakan semua hal baik yang telah dan akan datang.
+        </div>
+
+        <button class="start-btn" onclick="startJourney()">
+            💌 Klik Untuk Memulai
+        </button>
+
+    </div>
+
+</section>
+
+<section class="section fade" id="message">
+
+    <div class="card">
+
+        <h2>💌 Dear Hanin</h2>
+
+        <p>
+            Selamat ulang tahun 🎂
+            <br><br>
+
+            Semoga hari ini dipenuhi kebahagiaan,
+            tawa yang tulus,
+            dan banyak momen yang membuatmu tersenyum.
+
+            <br><br>
+
+            Terima kasih sudah menjadi bagian dari banyak cerita,
+            kenangan,
+            dan hari-hari yang menyenangkan.
+
+            <br><br>
+
+            Semoga tahun ini membawa lebih banyak keberuntungan,
+            kesehatan,
+            kebahagiaan,
+            dan impian yang terwujud.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section fade">
+
+    <div class="card">
+
+        <h2>✨ Rundown Hari Ini</h2>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <div class="icon">🚗</div>
+                <div>
+                    <div class="time">09:00</div>
+                    <div class="desc">Perjalanan menuju Blok M</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="icon">🍽️</div>
+                <div>
+                    <div class="time">11:00</div>
+                    <div class="desc">Makan Siang Bersama</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="icon">📸</div>
+                <div>
+                    <div class="time">13:00</div>
+                    <div class="desc">Foto dan Mengabadikan Momen</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="icon">☕</div>
+                <div>
+                    <div class="time">15:00</div>
+                    <div class="desc">Coffee & Chill Time</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="icon">🌇</div>
+                <div>
+                    <div class="time">17:00</div>
+                    <div class="desc">Menikmati Sunset Bersama</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section fade">
+
+    <div class="card quote">
+
+        ❤️
+
+        <br><br>
+
+        "Semoga hari ini menjadi salah satu hari yang paling berkesan,
+        dan semoga kebahagiaan selalu menemukan jalannya untukmu."
+
+    </div>
+
+</section>
+
+<section class="footer">
+
+    <h2>Happy Birthday ❤️</h2>
+
+    <p>
+
+        Thank you for all the stories,
+        memories,
+        and laughter.
+
+        <br><br>
+
+        Semoga hari ini menyenangkan,
+        dan tahun ini menjadi tahun terbaikmu.
+
+        <br><br>
+
+        🎂 Hanin • 12 June ✨
+
+    </p>
+
+    <a href="#top" class="back-btn">
+        ⬆️ Kembali Ke Atas
+    </a>
+
+</section>
+
+<script>
+
+function startJourney(){
+
+    const music =
+    document.getElementById('birthdayMusic');
+
+    music.play();
+
+    confetti({
+        particleCount:250,
+        spread:130,
+        origin:{y:0.6}
+    });
+
+    document
+    .getElementById('message')
+    .scrollIntoView({
+        behavior:'smooth'
+    });
+}
+
+const observer =
+new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+
+    });
+
+});
+
+document.querySelectorAll('.fade')
+.forEach(el=>observer.observe(el));
+
+</script>
+
+</body>
+</html>
