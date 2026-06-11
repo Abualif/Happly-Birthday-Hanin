@@ -8,46 +8,71 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Poppins,sans-serif;background:#eef4ff;overflow-x:hidden}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:
-linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px),#eef4ff;background-size:30px 30px}
+body{
+font-family:Poppins,sans-serif;
+overflow-x:hidden;
+background:linear-gradient(180deg,#dfe9ff 0%,#eef4ff 35%,#ffffff 100%);
+position:relative;
+}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0}
+.particles span{
+position:absolute;width:8px;height:8px;background:white;border-radius:50%;
+box-shadow:0 0 10px white,0 0 20px white;
+animation:floatParticle 12s linear infinite;
+}
+.particles span:nth-child(1){left:10%;animation-duration:8s}
+.particles span:nth-child(2){left:25%;animation-duration:10s}
+.particles span:nth-child(3){left:40%;animation-duration:13s}
+.particles span:nth-child(4){left:60%;animation-duration:9s}
+.particles span:nth-child(5){left:75%;animation-duration:14s}
+.particles span:nth-child(6){left:90%;animation-duration:11s}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;position:relative;z-index:1}
 .container{max-width:1100px;width:100%;display:flex;gap:40px;align-items:center;justify-content:space-between}
 .left{flex:1}.right{flex:1;display:flex;justify-content:center}
 .title1,.title2{font-size:4rem;font-weight:800;opacity:0;transform:translateX(-80px);animation:slide 1s forwards}
 .title1{color:#fff;text-shadow:3px 3px 0 #34497f,-3px -3px 0 #34497f}
 .title2{color:#6C8EF5;animation-delay:.3s}
 .date{display:inline-block;margin-top:15px;background:#6C8EF5;color:#fff;padding:10px 20px;border-radius:999px}
-.subtitle{margin-top:20px;color:#555;line-height:1.8}
-.circle{width:320px;height:320px;border-radius:50%;overflow:hidden;border:8px solid #fff;box-shadow:0 15px 30px rgba(0,0,0,.2)}
+.tagline{margin-top:15px;color:#5d6f9f;font-style:italic}
+.circle{
+width:320px;height:320px;border-radius:50%;overflow:hidden;border:8px solid #fff;
+box-shadow:0 15px 30px rgba(0,0,0,.2);position:relative;animation:floating 4s ease-in-out infinite;
+}
+.circle:before{
+content:'';position:absolute;inset:-20px;
+background:radial-gradient(circle,rgba(108,142,245,.4),transparent 70%);
+z-index:-1;filter:blur(20px);animation:pulse 4s infinite;
+}
 .circle img{width:100%;height:100%;object-fit:cover}
-.btn{margin-top:25px;padding:15px 28px;border:none;border-radius:999px;background:#2d4eb5;color:#fff;cursor:pointer}
+.btn{
+margin-top:25px;padding:16px 30px;border:none;border-radius:999px;
+background:rgba(255,255,255,.35);backdrop-filter:blur(10px);
+color:#2d4eb5;font-weight:600;cursor:pointer;
+}
 .popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);align-items:center;justify-content:center;padding:20px;z-index:99}
 .popup.active{display:flex}
-.card{background:#fff;max-width:450px;padding:30px;border-radius:24px;text-align:center}
+.card{background:#fff;max-width:500px;padding:30px;border-radius:24px;text-align:center}
 .section{padding:90px 20px}
-.envelope{max-width:340px;margin:auto;cursor:pointer}
+.envelope{max-width:380px;margin:auto;cursor:pointer}
 .flap{height:120px;background:#6C8EF5;clip-path:polygon(0 0,100% 0,50% 100%)}
-.letter{background:#fff;padding:20px;border-radius:0 0 16px 16px;display:none}
-.gallery{display:flex;gap:20px;overflow-x:auto;padding:20px 10px;scroll-snap-type:x mandatory;}
-.gallery img{width:280px;height:380px;object-fit:cover;border-radius:24px;flex:none;scroll-snap-align:center;transition:.3s;box-shadow:0 10px 25px rgba(0,0,0,.12);}
-.gallery img:hover{transform:translateY(-8px) scale(1.02);}
-.gallery::-webkit-scrollbar{height:8px;}
-.gallery::-webkit-scrollbar-thumb{background:#6C8EF5;border-radius:999px;}
+.letter{background:#fff;padding:30px;border-radius:0 0 20px 20px;display:none;line-height:1.9;text-align:center;color:#444}
+.gallery{display:flex;gap:20px;overflow-x:auto;padding:20px}
+.gallery img{width:280px;height:380px;object-fit:cover;border-radius:24px;flex:none}
 .timeline{max-width:900px;margin:auto}
 .event{display:flex;gap:16px;margin-bottom:16px}
 .time{background:#6C8EF5;color:#fff;padding:15px;border-radius:12px;min-width:140px;text-align:center}
 .content{background:#f5f8ff;padding:18px;border-radius:12px;flex:1}
 .end{text-align:center;padding:100px 20px}
 @keyframes slide{to{opacity:1;transform:none}}
+@keyframes floating{50%{transform:translateY(-12px)}}
+@keyframes pulse{50%{transform:scale(1.1);opacity:.6}}
+@keyframes floatParticle{0%{transform:translateY(100vh);opacity:0}20%{opacity:1}100%{transform:translateY(-100px);opacity:0}}
 @media(max-width:768px){.container{flex-direction:column-reverse;text-align:center}.title1,.title2{font-size:3rem}.event{flex-direction:column}.circle{width:250px;height:250px}}
 </style>
 </head>
 <body>
-
-<audio id="music" loop>
-<source src="ulangtahun.mp3" type="audio/mpeg">
-</audio>
+<div class="particles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<audio id="music" loop><source src="ulangtahun.mp3" type="audio/mpeg"></audio>
 
 <section class="hero">
 <div class="container">
@@ -55,20 +80,17 @@ linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px),#eef4ff;backgr
 <div class="title1">Happy</div>
 <div class="title2">Birthday</div>
 <div class="date">12 June • Hanin Turns 23 🎂</div>
-<div class="subtitle">A little surprise made specially for Hanin ❤️</div>
+<div class="tagline">A special day for a special person ✨</div>
 <button class="btn" onclick="openGift()">Click Here To See What's Next 🎁</button>
 </div>
-<div class="right">
-<div class="circle"><img src="Hanin.jfif"></div>
-</div>
+<div class="right"><div class="circle"><img src="Hanin.jfif"></div></div>
 </div>
 </section>
 
 <div class="popup" id="popup">
 <div class="card">
 <h2>🎁 Happy Birthday Hanin</h2>
-<p>Sehat selalu, panjang umur, rezekinya lancar, dan cepat mendapat kerja yaaa.<br><br>
-Semoga di umur yang ke-23 ini semakin dewasa, pintar, makin cantik, semua yang dipengen dikabulin. All the best for you ❤️</p>
+<p>Wishing you happiness, good health, endless blessings, and exciting opportunities ahead. May 23 be your best chapter yet ❤️</p>
 <button class="btn" onclick="showLetter()">Open The Next Surprise ✨</button>
 </div>
 </div>
@@ -78,7 +100,10 @@ Semoga di umur yang ke-23 ini semakin dewasa, pintar, makin cantik, semua yang d
 <div class="envelope" onclick="openLetter()">
 <div class="flap"></div>
 <div class="letter" id="letter">
-Terima kasih sudah menjadi bagian dari banyak cerita yang menyenangkan. Semoga semua hal baik datang menghampiri kamu dan tahun ke-23 ini menjadi salah satu tahun terbaikmu.
+Four years, countless memories, and still one of my favorite people.<br><br>
+Thank you for all the laughter, conversations, and moments we've shared together.<br><br>
+As you turn 23 today, I hope life becomes a little kinder, your dreams come a little closer, and your days become a little brighter.<br><br>
+Happy Birthday, Hanin ❤️
 </div>
 </div>
 </section>
@@ -86,22 +111,20 @@ Terima kasih sudah menjadi bagian dari banyak cerita yang menyenangkan. Semoga s
 <section class="section">
 <h1 style="text-align:center;margin-bottom:30px">📸 Memory Gallery</h1>
 <div class="gallery">
-    <img src="foto1.jfif" alt="Memory 1">
-    <img src="foto2.jfif" alt="Memory 2">
-    <img src="foto3.jfif" alt="Memory 3">
-    <img src="foto4.jpeg" alt="Memory 4">
-    <img src="foto5.jfif" alt="Memory 5">
-    <img src="foto6.jfif" alt="Memory 6">
+<img src="foto1.jfif"><img src="foto2.jfif"><img src="foto3.jfif">
+<img src="foto4.jpeg"><img src="foto5.jfif"><img src="foto6.jfif">
 </div>
 </section>
 
 <section class="section">
-<h1 style="text-align:center;margin-bottom:40px">✨ Our Adventure Today</h1>
+<h1 style="text-align:center;margin-bottom:40px">✨ Our Journey Plan On Saturday, 13 June 2026</h1>
 <div class="timeline">
-<div class="event"><div class="time">10:00-11:00</div><div class="content"><h3>🚗 Going To Blok M</h3></div></div>
-<div class="event"><div class="time">11:00-13:00</div><div class="content"><h3>🍽️ Lunch & Birthday Gift</h3></div></div>
-<div class="event"><div class="time">13:00-15:00</div><div class="content"><h3>📸 Photobox Session</h3></div></div>
-<div class="event"><div class="time">16:00-18:00</div><div class="content"><h3>🌆 Strolling Around Jakarta</h3></div></div>
+<div class="event"><div class="time">10:00 - 11:00</div><div class="content"><h3>☕ Trip To Kopi Kamu</h3></div></div>
+<div class="event"><div class="time">11:00 - 13:00</div><div class="content"><h3>🎂 Birthday Celebration & Gift Time</h3></div></div>
+<div class="event"><div class="time">14:00 - 15:00</div><div class="content"><h3>🚗 Going To Blok M</h3></div></div>
+<div class="event"><div class="time">16:00 - 17:00</div><div class="content"><h3>🍽️ Dinner At Blok M</h3></div></div>
+<div class="event"><div class="time">17:00 - 18:00</div><div class="content"><h3>📸 Photobox Session</h3></div></div>
+<div class="event"><div class="time">18:00 - End</div><div class="content"><h3>✨ Your Choice</h3></div></div>
 </div>
 </section>
 
@@ -112,9 +135,11 @@ Terima kasih sudah menjadi bagian dari banyak cerita yang menyenangkan. Semoga s
 
 <script>
 function openGift(){
-document.getElementById('music').play();
+const music=document.getElementById('music');
+music.volume=0.5;
+music.play().catch(()=>{});
 document.getElementById('popup').classList.add('active');
-confetti({particleCount:200,spread:120});
+confetti({particleCount:250,spread:140,origin:{y:0.6}});
 }
 function showLetter(){
 document.getElementById('popup').classList.remove('active');
@@ -124,6 +149,5 @@ function openLetter(){
 document.getElementById('letter').style.display='block';
 }
 </script>
-
 </body>
 </html>
